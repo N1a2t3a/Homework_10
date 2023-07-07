@@ -14,10 +14,10 @@ class AddressBook(UserDict):
 
 class Record:
     def __init__(self, name, phone=None):
-        self.name = Name(name)
+        self.name = name
         self.fields = []
         if phone is not None:
-            self.add_field(Phone(phone))
+            self.add_field(phone)
 
     def add_field(self, field):
         self.fields.append(field)
@@ -48,7 +48,7 @@ class Name(Field):
 
 
 class Phone(Field):
-    pass
+    pass 
 
 
 def input_error(func):
@@ -71,7 +71,9 @@ address_book = AddressBook()
 @input_error
 def add_contact(contact_info):
     name, phone = contact_info.split(' ')
-    record = Record(name, phone)
+    name_field = Name(name)
+    phone_field = Phone(phone)
+    record = Record(name_field, phone_field)
     address_book.add_record(record)
     return "Contact added successfully."
 
@@ -137,4 +139,10 @@ def process_command(command):
 
 def main():
     print("How can I help you?")
+
+
+if __name__ == "__main__":
+    main()
+
+
 
